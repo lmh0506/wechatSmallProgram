@@ -1,0 +1,11 @@
+<!--pages/animation/animation.wxml-->
+<view class='main'>
+  <view class='animation' animation="{{animation}}"></view>
+</view>
+<scroll-view scroll-y='true'>
+  <button bindtap='rotate'>旋转</button>
+  <button bindtap='scale'>缩放</button>
+  <button bindtap='translate'>偏移</button>
+  <button bindtap='skew'>倾斜</button>
+  <button bindtap='rotateAndScale'>旋转并缩放</button>
+</scroll-view>

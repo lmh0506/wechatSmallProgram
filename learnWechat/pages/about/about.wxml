@@ -1,0 +1,22 @@
+<!--pages/about/about.wxml-->
+<text>{{msg}}</text>
+<block wx:for="{{objArr}}" wx:key="id">
+  <view>id:{{item.id}}</view>
+  <view>name:{{item.name}}</view>
+</block>
+<view wx:if="{{flag}}">显示</view>
+<view wx:else="{{flag}}">隐藏</view>
+<button bindtap='changeMsg'>changeMsg</button>
+
+<template name="msg">
+  <view>姓名: {{name}}</view>
+  <view>年龄: {{age}}</view>
+  <view>班级: {{class}}</view>
+</template>
+
+<template is="msg" data="{{name: 'lmh', age: 24, class: 'computer'}}" />
+
+<import src="../../common/common.wxml" />
+<block wx:for="{{[0, 1, 2, 3, 4]}}" wx:key="*this">
+  <template is="{{item % 2 === 0 ? 'even' : 'odd'}}" data="{{item}}"></template>
+</block>

@@ -1,0 +1,23 @@
+/* pages/detail/detail.wxss */
+scroll-view{
+  width: 100%;
+  height: 250rpx;
+}
+
+view{
+  width: 100%;
+  height: 250rpx;
+  display: inline-block;
+}
+
+.a{
+  background: red;
+}
+
+.b{
+  background: green;
+}
+
+.c{
+  background: blue;
+}

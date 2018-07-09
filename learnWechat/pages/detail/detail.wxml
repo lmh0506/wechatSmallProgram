@@ -1,0 +1,22 @@
+<!--pages/detail/detail.wxml-->
+<scroll-view scroll-y="{{true}}">
+  <view class='a'>
+    <text>a</text>
+  </view>
+  <view class='b'>
+    <text>b</text>
+  </view>
+  <view class='c'>
+    <text>c</text>
+  </view>
+</scroll-view>
+<swiper indicator-dots="{{true}}" autoplay='{{autoPlay}}'>
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src='{{item}}' width="355" height="150"></image>
+    </swiper-item>
+  </block>
+</swiper>
+<switch type='switch' bindtap='changeSwitch'></switch>
+<button bindtap='jumpToMov'>跳转到mov</button>
+<navigator url='/pages/logs/logs'>跳转到logs</navigator>

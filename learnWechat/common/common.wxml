@@ -1,0 +1,6 @@
+<template name='even'>
+  <view>even: {{item}}</view>
+</template>
+<template name='odd'>
+  <view>odd: {{item}}</view>
+</template>

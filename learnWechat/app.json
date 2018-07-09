@@ -1,0 +1,44 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/about/about",
+    "pages/detail/detail",
+    "pages/mov/mov",
+    "pages/form/form",
+    "pages/media/media",
+    "pages/map/map",
+    "pages/interface/interface",
+    "pages/animation/animation"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#000",
+    "navigationBarTitleText": "myWechat",
+    "navigationBarTextStyle":"#fff",
+    "enablePullDownRefresh": true
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "blue",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "电影优惠",
+      "iconPath": "images/index.png",
+      "selectedIconPath": "images/index-active.png"
+    },
+    {
+      "pagePath": "pages/animation/animation",
+      "text": "关于会员",
+      "iconPath": "images/me.png",
+      "selectedIconPath": "images/me-active.png"
+    },
+    {
+      "pagePath": "pages/detail/detail",
+      "text": "优惠详情",
+      "iconPath": "images/youhui.png",
+      "selectedIconPath": "images/youhui-active.png"
+    }]
+  }
+}
