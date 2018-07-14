@@ -1,0 +1,22 @@
+<!--pages/image/image.wxml-->
+<view bindtap='chooseSourceType'>
+  <text>选择图片来源:  </text>
+  <text>{{sourceType[sourceTypeIndex]}}</text>
+</view>
+<view bindtap='chooseSizeType'>
+  <text>选择图片质量:  </text>
+  <text>{{sizeType[sizeTypeIndex]}}</text>
+</view>
+<view>
+  <picker mode='selector' range="{{count}}" value='{{countIndex}}' bindchange='chooseCount'>
+    <text>选择图片数量:  {{count[countIndex]}}</text>
+  </picker>
+</view>
+<text bindlongtap='copy' data-content='舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服'>舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服舒服</text>
+<input bindlongtap='getCopy' value='{{content}}' style='height:100rpx;border:1px solid #000'></input>
+<button bindtap='chooseImage'>选择图片</button>
+<view style='display:flex;flex-wrap:wrap;justify-content:flex-start'>
+  <block wx:for="{{imgArr}}" wx:key='*this'>
+    <image style='width:200rpx;height:200rpx;' bindtap='previewImage' data-index='{{index}}' src='{{item}}'></image>
+  </block>
+</view>

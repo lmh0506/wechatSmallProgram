@@ -9,7 +9,8 @@
     "pages/media/media",
     "pages/map/map",
     "pages/interface/interface",
-    "pages/animation/animation"
+    "pages/animation/animation",
+    "pages/image/image"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -29,7 +30,7 @@
       "selectedIconPath": "images/index-active.png"
     },
     {
-      "pagePath": "pages/animation/animation",
+      "pagePath": "pages/image/image",
       "text": "关于会员",
       "iconPath": "images/me.png",
       "selectedIconPath": "images/me-active.png"

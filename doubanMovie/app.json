@@ -1,0 +1,35 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/detail/detail",
+    "pages/search/search",
+    "pages/profile/profile"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#00B51D",
+    "navigationBarTitleText": "豆瓣电影",
+    "navigationBarTextStyle":"#fff"
+  },
+  "tabBar": {
+    "color": "#2c2c2c",
+    "selectedColor": "#00B51D",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "优雅电影",
+      "iconPath": "images/index.png",
+      "selectedIconPath": "images/index-active.png"
+    },{
+      "pagePath": "pages/search/search",
+      "text": "搜索电影",
+      "iconPath": "images/search.png",
+      "selectedIconPath": "images/search-active.png"
+    },
+    {
+      "pagePath": "pages/profile/profile",
+      "text": "我的",
+      "iconPath": "images/me.png",
+      "selectedIconPath": "images/me-active.png"
+    }]
+  }
+}
