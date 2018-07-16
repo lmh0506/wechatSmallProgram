@@ -3,7 +3,7 @@
   <view class='page-header'>
     <text class='page-header-text'>{{title}}</text>
   </view>
-  <scroll-view scroll-y='true' class='page-body'>
+  <scroll-view scroll-y='true' class='page-body' bindscrolltolower='getMore'>
     <block wx:for="{{movieList}}" wx:key="*this">
       <navigator url='../detail/detail?id={{item.id}}'>
         <view class='item'>
@@ -25,5 +25,6 @@
 
       </navigator>
     </block>
+    <view class='haveMore'>{{haveMore}}</view>
   </scroll-view>
 </view>

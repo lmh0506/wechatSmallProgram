@@ -1,2 +1,18 @@
 <!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<scroll-view scroll-y="true">
+  <view class='meta'>
+    <image class='poster' src='{{detail.images.large}}'></image>
+    <text class='title'>{{detail.title}}{{detail.year}}</text>
+    <text class='info'>评分：{{detail.rating.average}}</text>
+    <text class='country'>国家：{{detail.countries}}</text>
+    <text class='country'>类型：{{detail.genres
+}}</text>
+    <view class='country'>导演：
+      <text wx:for='{{detail.directors}}' wx:key='*this'>{{item.name}}</text>
+    </view>
+  </view>
+  <view class='summary'>
+    <text class='label'>概况：</text>
+    <text class='desc'>{{detail.summary}}</text>
+  </view>
+</scroll-view>

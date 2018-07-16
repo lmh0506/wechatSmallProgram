@@ -1,2 +1,29 @@
 <!--pages/search/search.wxml-->
-<text>pages/search/search.wxml</text>
+<view class='page-header'>
+  <input type='text' class='page-header-text' placeholder='请输入关键字' focus bindinput='handleChange' bindconfirm='searchMovie'></input>
+</view>
+
+  <scroll-view scroll-y='true' class='page-body' bindscrolltolower='getMore'>
+    <block wx:for="{{movieList}}" wx:key="*this">
+      <navigator url='../detail/detail?id={{item.id}}'>
+        <view class='item'>
+          <image src="{{item.images.large}}" class='poster'></image>
+          <view class='meta'>
+            <text class='title'>{{item.title}}</text>
+            <text class='sub_title'>{{item.original_title}}</text>
+
+            <text class='artist'>
+              <block wx:for='{{item.directors}}' wx:key='*this'>
+                {{item.name}}
+              </block>
+            </text>
+          </view>
+          <text class='rating'>
+            {{item.rating.average}}
+          </text>
+        </view>
+
+      </navigator>
+    </block>
+    <view class='haveMore'>{{haveMore}}</view>
+  </scroll-view>

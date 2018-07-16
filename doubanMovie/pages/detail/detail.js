@@ -1,11 +1,12 @@
 // pages/detail/detail.js
+const API_URL = 'https://douban.uieee.com/v2/movie/subject/'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    detail: {}
   },
 
   /**
@@ -13,6 +14,29 @@ Page({
    */
   onLoad: function (options) {
     console.log(options)
+    let that = this
+    wx.showNavigationBarLoading()
+    wx.request({
+      url: API_URL + options.id,
+      header: {
+        "Content-Type": "json"
+      },
+      success(res) {
+        if (res.statusCode === 200) {
+          that.setData({
+            detail: res.data
+          })
+        }
+        wx.hideNavigationBarLoading()
+        console.log(res)
+      },
+      fail(e) {
+        wx.hideNavigationBarLoading()
+        wx.showToast({
+          title: '加载失败',
+        })
+      }
+    })
   },
 
   /**
