@@ -1,0 +1,11 @@
+/**index.wxss**/
+.swiper{
+  width: 100%;
+  margin: 0rpx;
+}
+
+.swiper .slide-image{
+  display: inline-block;
+  width: 100%;
+}
+
