@@ -1,2 +1,25 @@
 <!--pages/detail/detail.wxml-->
-<text>pages/detail/detail.wxml</text>
+<view class='container'>
+  <view class='ar_coverpath'>
+    <image src="{{img}}"></image>
+  </view>
+  <view class='ar_cont'>
+    <view style='display: flex;'>
+      <text class='ar_cont_h1'>
+        {{subject}}
+      </text>
+      <text class='ar_cont_price'>
+        价格：{{price}}
+      </text>
+    </view> 
+      <text class='cont'>
+        {{message}}
+      </text>
+      <view class='ar_line'></view>
+      <text class='ar_cont_h1'>详情描述</text>
+      <text>
+        {{message}}
+      </text>
+      <button class='ar_book' bindtap='bookTap'>立即购买</button>
+  </view>
+</view>

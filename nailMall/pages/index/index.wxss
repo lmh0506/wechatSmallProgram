@@ -9,3 +9,97 @@
   width: 100%;
 }
 
+.nav_top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+  padding: 20rpx 10rpx;
+  background-color: #000;
+  color: white;
+  box-sizing: border-box;
+}
+
+.nav_top_item{
+  width: 100rpx;
+  font-size: 28rpx;
+  text-align: center;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+}
+
+.nav_top_item image{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.active_red{color: rgb(221, 30, 82)}
+.active_orange{color: #eb6100}
+.active_yellow{color: #fff100}
+.active_green{color: #8fc31f}
+.active_purple{color: #aa2adf}
+
+/* 列表样式 */
+.nav_section{
+  width: 100%;
+}
+
+.nav_section_item{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 2rpx solid #ddd;
+}
+
+.nav_section_item:active{
+  background-color: #ddd;
+}
+
+.section_images image{
+  width: 170rpx;
+  height: 158rpx;
+  display: block;
+}
+
+.section_con{
+  width: 400rpx;
+  font-size: 26rpx;
+  color: #a9a9a9;
+}
+
+.nav_section_item view{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.section_con_sub{
+  font-size: 30rpx;
+  line-height: 60rpx;
+  color: #000;
+  margin-bottom: 10rpx;
+}
+
+.section_con_price{
+  font-size: 32rpx;
+  color: #d24a58;
+}
+
+.section_con_msg{
+  padding-top: 8rpx;
+}
+
+.section_book{
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 80rpx;
+  background: #d24a58;
+  font-size: 26rpx;
+  color: #fff;
+  align-self: center;
+}
+

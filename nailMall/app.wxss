@@ -6,4 +6,11 @@
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
+}
+
+.page-body{
+  display: flex;
+  flex: 1;
+  height: 1100rpx;
+  flex-direction: column;
 } 
