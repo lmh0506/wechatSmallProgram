@@ -1,2 +1,12 @@
 <!--pages/technicain/technicain.wxml-->
-<text>pages/technicain/technicain.wxml</text>
+<view class='container'>
+  <scroll-view class='page-body' scroll-y="true" bindscrolltolower="loadMore">
+    <view class='ar_picker_wrap'>
+      <picker value='{{index}}' bindchange='change' range='{{range}}'>
+        <view >
+          {{range[index]}}
+        </view>
+      </picker>
+    </view>
+  </scroll-view>
+</view>

@@ -1,2 +1,52 @@
 <!--pages/book/book.wxml-->
-<text>pages/book/book.wxml</text>
+<view class='container'>
+  <scroll-view scroll-y="true" class='page-body'>
+    <view class='ar_coverpath'>
+      <image src='{{img}}'></image>
+    </view>
+    <view class='ar_picker'>
+      <view class='ar_cont_h1'>
+        选择联系人
+      </view>
+      <view class='ar_cont_wrap'>
+        <picker mode="selector" value='{{index}}' bindchange='nameChange' range='{{range}}' range-key='nickname'>
+          <view class=''>
+            {{range[index].nickname}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- date -->
+      <view class='ar_cont_h1'>
+        服务时间
+      </view>
+      <view class='ar_date_time'>
+        <view class='ar_date'>
+          <image src='../../images/date.png'></image>
+          <picker mode="date" value='{{date}}' bindchange='dateChange'>
+            <view class=''>
+              {{date}}
+            </view>
+          </picker>
+        </view>
+        <view class='ar_time'>
+          <image src='../../images/time.png'></image>
+          <picker mode="time" value='{{time}}' bindchange='timeChange'>
+            <view class=''>
+              {{time}}
+            </view>
+          </picker>
+        </view>
+      </view>
+
+      <view class='ar_cont_h1'>
+        留言信息
+      </view>
+      <input class='msg_input' placeholder='请输入'></input>
+      <button bindtap='bookTap' class='ar_book'>
+        确认预约
+      </button>
+      <toast hidden ="{{bookFlag}}">预约成功</toast>
+    </view>
+  </scroll-view>
+</view>

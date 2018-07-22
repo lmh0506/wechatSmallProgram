@@ -60,5 +60,19 @@ Page({
         })
       }
     })
+  },
+  navgitBook(e) {
+    console.log(e)
+    let item = e.currentTarget.dataset.item;
+    console.log(item)
+    wx.navigateTo({
+      url: `/pages/book/book?img=${item.civerpath}&subject=${item.subject}&price=${item.price}&message=${item.message}`,
+      success() {
+        wx.showNavigationBarLoading()
+        wx.setNavigationBarTitle({
+          title: '预约渠道',
+        })
+      }
+    })
   }
 })

@@ -1,18 +1,32 @@
 // pages/technicain/technicain.js
+const data = require('../../utils/data.js')
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    skillData: [],
+    range: ['美发', '美容', '美甲', '美睫'],
+    index: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.setData({
+      skillData: data.getSkillData()
+    })
+  },
+  loadMore() {
+
+  },
+  change(res) {
+    this.setData({
+      index: res.detail.value
+    })
   },
 
   /**

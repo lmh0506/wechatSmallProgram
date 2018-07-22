@@ -26,7 +26,7 @@
       <view wx:if="{{sectionItems[navIndex]}}">
         <block wx:for="{{sectionItems[navIndex]}}" wx:key="*this">
           <!-- images -->
-          <view class='nav_section_item'>
+          <view class='nav_section_item' bindtap='navgitDetail' data-item='{{item}}'>
             <view class='section_images'>
               <block wx:if="{{item.civerpath}}">
                 <image src="{{item.civerpath}}"></image>
@@ -50,7 +50,7 @@
             </view>
 
             <!-- 预约 -->
-            <view bindtap='navgitDetail' data-item='{{item}}' class='section_book'>
+            <view catchtap='navgitBook' data-item='{{item}}' class='section_book'>
               <text>预约</text>
             </view>
           </view>

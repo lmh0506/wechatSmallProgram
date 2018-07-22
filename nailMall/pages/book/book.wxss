@@ -1,1 +1,83 @@
 /* pages/book/book.wxss */
+.ar_coverpath{
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.ar_coverpath image{
+  flex: 1;
+  display: block;
+  height: 330rpx;
+}
+
+.ar_picker{
+  width: 100%;
+  margin: 0;
+  color: #000;
+}
+
+.ar_cont_h1{
+  font-size: 32rpx;
+  font-weight: bold;
+  line-height: 64rpx;
+  padding: 20rpx 40rpx;
+}
+
+.ar_cont_wrap{
+  width: 670rpx;
+  background-size: 25rpx 14rpx;
+  border-radius: 10rpx;
+  padding: 20rpx;
+  margin: 20rpx auto;
+  border: 1rpx solid #ccc;
+  font-size: 32rpx;
+}
+
+.ar_date_time{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around
+}
+
+.ar_date, .ar_time{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.ar_date_time image{
+  width: 50rpx;
+  height: 50rpx;
+  vertical-align: middle;
+  margin-right: 20rpx;
+}
+
+.ar_date_time picker{
+  width: 220rpx;
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 0rpx 10rpx;
+}
+
+.msg_input{
+  border: 1rpx solid #ddd;
+  border-radius: 8rpx;
+  padding: 8rpx 10rpx;
+  margin: 30rpx;
+  padding-left: 20rpx;
+  font-size: 30rpx;
+}
+
+.ar_book{
+  width: 200rpx;
+  background: #d24a58;
+  font-size: 32rpx;
+  color: #fff;
+  border-radius: 0rpx;
+  margin: 40rpx auto 10rpx;
+}
