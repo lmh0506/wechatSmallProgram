@@ -1,8 +1,8 @@
 {
   "pages":[
-    "pages/technicain/technicain",
     "pages/index/index",
     "pages/user/user",
+    "pages/technicain/technicain",
     "pages/technicain_detail/technicain_detail",
     "pages/book/book",
     "pages/detail/detail"

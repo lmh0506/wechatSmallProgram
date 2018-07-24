@@ -1,2 +1,24 @@
 <!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class='container'>
+  <view class='user_base_info'>
+    <image src='{{userInfo.avatarUrl}}'></image>
+  </view>
+  <view class='user_info'>
+    <text>昵称：{{userInfo.nickName}}</text>
+  </view>
+    <!--address-->
+  <view class="uer_addr_message">
+
+    <view class="user_addr_title">【地址管理】</view>
+    <view class="user_addr_item">
+      <text class="addr_sub">浙江省杭州市滨江区</text>
+      <text class="addr_sub">浙江省杭州市滨江区</text>
+      <text class="addr_sub">浙江省杭州市滨江区</text>
+      <text class="addr_sub">浙江省杭州市滨江区</text>
+    
+    </view>
+      <button type="primary" class="btn" bindtap="map_btn">查看我当前的位置</button>
+  
+  </view>
+</view>
+

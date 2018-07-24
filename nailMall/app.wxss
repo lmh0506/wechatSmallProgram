@@ -11,6 +11,6 @@
 .page-body{
   display: flex;
   flex: 1;
-  height: 1100rpx;
+  height: 100vh;
   flex-direction: column;
 } 

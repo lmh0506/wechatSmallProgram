@@ -21,11 +21,22 @@ Page({
     })
   },
   loadMore() {
-
+    console.log('加载更多')
+    let skillData = this.data.skillData.concat(data.getSkillData())
+    this.setData({
+      skillData
+    })
   },
   change(res) {
     this.setData({
       index: res.detail.value
+    })
+  },
+  navgatorDetail(e) {
+    let item = e.currentTarget.dataset.item
+    console.log(item)
+    wx.navigateTo({
+      url: `../technicain_detail/technicain_detail?avatar=${item.avatar}&company=${item.company}&message=${item.message}&nickname=${item.nickname}&price=${item.price}`,
     })
   },
 

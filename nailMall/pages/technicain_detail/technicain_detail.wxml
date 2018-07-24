@@ -1,2 +1,23 @@
 <!--pages/technicain_detail/technicain_detail.wxml-->
-<text>pages/technicain_detail/technicain_detail.wxml</text>
+<view class='container'>
+  <scroll-view scroll-y="true" class='page-body'>
+    <view class='ar_coverpath'>
+      <image src='{{avatar}}'></image>
+    </view>
+    <view class='ar_cont'>
+      <view class='ar_cont_h1'>
+        {{nickname}}
+      </view>
+      <text>{{message}}</text>
+
+      <view class='ar_cont_h2'>
+        【 服务内容 】
+      </view>
+      <view class='ar_serice_item'>
+        <text class='ar_cont_subject'>面部清洁</text>
+        <text class='ar_cont_price'>{{price}}</text>
+        <text class='ar_cont_book'>预约</text>
+      </view>
+    </view>
+  </scroll-view>
+</view>

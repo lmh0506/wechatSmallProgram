@@ -8,5 +8,33 @@
         </view>
       </picker>
     </view>
+
+    <!-- list -->
+    <view class='nav_section'>
+      <view wx:if="{{skillData.length > 0}}">
+        <block wx:for="{{skillData}}" wx:key="*this">
+          <view class='nav_section_items' bindtap='navgatorDetail' data-item='{{item}}'>
+            <view class='section_image'>
+              <image src='{{item.avatar}}'></image>
+            </view>
+            <view class='section_con'>
+              <view class='section_con_sub'>
+                <text>{{item.company}}</text>
+              </view>
+              <view class='section_con_price'>
+                <text>{{item.nickname}}</text>
+                <text class='price'>{{item.price}}</text>
+              </view>
+              <view class='section_con_msg'>
+                <text>{{item.message}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+      <view wx:else>
+        <text>暂无数据</text>
+      </view>
+    </view>
   </scroll-view>
 </view>
