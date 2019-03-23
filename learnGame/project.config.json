@@ -1,20 +1,16 @@
 {
 	"description": "项目配置文件。",
-	"packOptions": {
-		"ignore": []
-	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
-	"compileType": "miniprogram",
-	"libVersion": "2.1.3",
-	"appid": "wxef8c5768902fdbd9",
-	"projectname": "doubanMovie",
-	"isGameTourist": false,
+	"compileType": "game",
+	"libVersion": "game",
+	"appid": "wxc92498fac958034d",
+	"projectname": "learnGame",
 	"condition": {
 		"search": {
 			"current": -1,
