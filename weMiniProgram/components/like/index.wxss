@@ -1,0 +1,19 @@
+/* components/like/index.wxss */
+.conainer{
+  display: inline-flex;
+  padding: 10rpx;
+}
+
+.conainer image{
+  width: 32rpx;
+  height: 28rpx;
+}
+
+.conainer text{
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #bbb;
+  position: relative;
+  bottom: 10rpx;
+  right: -6rpx;
+}
