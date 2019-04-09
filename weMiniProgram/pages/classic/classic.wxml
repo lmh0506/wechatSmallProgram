@@ -4,9 +4,27 @@
   <like-cmp
     class="like" 
     bind:like="onLike"
-    isLike="{{classic.like_status === 1}}" 
-    count="{{classic.fav_nums}}"></like-cmp>
+    isLike="{{likeStatus}}" 
+    count="{{likeCount}}"></like-cmp>
 </view>
 <movie-cmp
+  hidden="{{classic.type !== 100}}"
   img="{{classic.image}}"
   content="{{classic.content}}"></movie-cmp>
+<music-cmp
+  hidden="{{classic.type !== 200}}"
+  img="{{classic.image}}"
+  url="{{classic.url}}"
+  title="{{classic.title}}"
+  content="{{classic.content}}"></music-cmp>
+<essay-cmp
+  hidden="{{classic.type !== 300}}"
+  img="{{classic.image}}"
+  content="{{classic.content}}"></essay-cmp>
+<navi-cmp
+  class="navi"
+  bind:left="onNext"
+  bind:right="onPrevious"
+  title="{{classic.title}}"
+  first="{{first}}"
+  latest="{{latest}}"></navi-cmp>

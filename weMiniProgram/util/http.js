@@ -8,7 +8,7 @@ class HTTP{
       method,
       data,
       header: {
-        // appkey: APP_KEY
+        appkey: APP_KEY
       },
       success: res => {
         let code = res.statusCode

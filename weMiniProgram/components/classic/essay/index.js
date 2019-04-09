@@ -1,5 +1,5 @@
 import classicBeh from '../classic-beh'
-// components/classic/movie/index.js
+// components/classic/essay/index.js
 Component({
   /**
    * 组件的属性列表
