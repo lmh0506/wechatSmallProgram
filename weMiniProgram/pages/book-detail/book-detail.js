@@ -1,4 +1,5 @@
 import Book from '../../models/book'
+import Like from '../../models/like'
 // pages/book-detail/book-detail.js
 Page({
 
@@ -9,31 +10,87 @@ Page({
     comments: [],
     likeStatus: false,
     likeCount: 0,
-    book: null
+    book: null,
+    posting: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    wx.showLoading()
     const id = options.id
-    Book.getDetail(id).then(book => {
+    
+    Promise.all(
+      [Book.getDetail(id), 
+      Book.getComments(id), 
+      Book.getLikeStatus(id)]
+    ).then(([book, comments, data]) => {
       this.setData({
-        book
-      })
-    })
-
-    Book.getComments(id).then(comments => {
-      this.setData({
-        comments: comments.comments
-      })
-    })
-
-    Book.getLikeStatus(id).then(data => {
-      this.setData({
-        likeStatus: data.like_status,
+        book,
+        comments: comments.comments,
+        likeStatus: data.like_status === 1,
         likeCount: data.fav_nums
       })
+      wx.hideLoading();
+    })
+  },
+
+  onLike(e) {
+    Like.like({
+      isLike: e.detail.isLike,
+      art_id: this.data.book.id,
+      type: 400
+    })
+  },
+
+  onFakePost() {
+    this.setData({
+      posting: true
+    })
+  },
+
+  onCancle() {
+    this.setData({
+      posting: false
+    })
+  },
+
+  onPost(e) {
+    let comment = e.detail.text || e.detail.value
+
+    if(!comment) {
+      wx.showToast({
+        title: '短评不能为空',
+        icon: 'none'
+      });
+      return
+    }
+
+    if(comment.length > 12) {
+      wx.showToast({
+        title: '短评最多12个字',
+        icon: 'none'
+      });
+      return
+    }
+
+    Book.postComment(this.data.book.id, comment).then(res => {
+      wx.showToast({
+        title: '提交成功',
+        icon: 'none'
+      });
+
+      this.data.comments.unshift({
+        content: comment,
+        nums: 1
+      })
+
+      this.setData({
+        comments: this.data.comments,
+        posting: false
+      })
+
     })
   },
 

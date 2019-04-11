@@ -7,6 +7,16 @@ class BookModel extends HTTP{
     })
   }
 
+  search(start, q) {
+    return this.request({
+      url: 'book/search?summary=1',
+      data: {
+        q,
+        start
+      }
+    })
+  }
+
   getDetail(id) {
     return this.request({
       url: `book/${id}/detail`
@@ -28,6 +38,17 @@ class BookModel extends HTTP{
   getMyBookCount() {
     return this.request({
       url: 'book/favor/count'
+    })
+  }
+
+  postComment(book_id, content) {
+    return this.request({
+      url: 'book/add/short_comment',
+      method: 'POST',
+      data: {
+        book_id,
+        content
+      }
     })
   }
 }

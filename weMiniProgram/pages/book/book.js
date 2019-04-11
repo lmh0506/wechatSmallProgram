@@ -1,4 +1,5 @@
 import Book from '../../models/book'
+import KeyWord from '../../models/keyword'
 // pages/book/book.js
 Page({
 
@@ -6,7 +7,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    books: []
+    books: [],
+    searching: false,
+    hotWord: [],
+    searchArray: [],
+    keyword: '',
+    total: -1,
+    noResult: false
   },
 
   /**
@@ -21,10 +28,77 @@ Page({
   },
 
   toBookDetail(e) {
-    let id = e.target.dataset.book.id
+    let id = e.detail.id || e.target.dataset.book.id
     wx.navigateTo({
       url: `/pages/book-detail/book-detail?id=${id}`
     });
+  },
+
+  onSearch() {
+    KeyWord.getHot().then(data => {
+      this.setData({
+        hotWord: data.hot,
+        searching: true
+      })
+    })
+  },
+
+  onCancel() {
+    this.setData({
+      searching: false,
+      searchArray: [],
+      keyword: '',
+      noResult: false
+    })
+  },
+
+  onClear() {
+    this.setData({
+      searchArray: [],
+      keyword: '',
+      noResult: false
+    })
+  },
+
+  onSearchBook(e) {
+    wx.showLoading();
+    this.setData({
+      searchArray: [],
+      keyword: e.detail.keyword,
+      noResult: false
+    })
+    Book.search(this.data.searchArray.length, this.data.keyword).then(data => {
+      let searchArray = this.data.searchArray.concat(data.books)
+      this.setData({
+        searchArray,
+        total: data.total
+      })
+      if(data.total === 0) {
+        this.setData({
+          noResult: true
+        })
+      }
+      wx.hideLoading();
+    })
+  },
+
+  _loadMore() {
+    this.setData({
+      loading: true
+    })
+    console.log(this.data.loading)
+    Book.search(this.data.searchArray.length, this.data.keyword).then(data => {
+      let searchArray = this.data.searchArray.concat(data.books)
+      this.setData({
+        searchArray,
+        total: data.total,
+        loading: false
+      })
+    }, () => {
+      this.setData({
+        loading: false
+      })
+    })
   },
 
   /**
@@ -66,7 +140,10 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let {searching, searchArray, total, loading} = this.data
+    if(!loading && searching && searchArray.length < total) {
+      this._loadMore()
+    }
   },
 
   /**
