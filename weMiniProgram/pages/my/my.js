@@ -1,3 +1,5 @@
+import Classic from '../../models/classic'
+import Book from '../../models/book'
 // pages/my/my.js
 Page({
 
@@ -5,14 +7,61 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userInfo: null,
+    count: 0,
+    classics: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.userAuthorized()
+    this.getMybookCount()
+    this.getMyClassics()
+    
+  },
+  getMybookCount() {
+    Book.getMyBookCount().then(data => {
+      this.setData({
+        count: data.count
+      })
+    })
+  },
 
+  getMyClassics() {
+    Classic.getMyClassics(classics => {
+      this.setData({
+        classics
+      })
+    })
+  },
+
+  // 用户是否已经授权
+  userAuthorized() {
+    let that = this
+    wx.getSetting({
+      success(res) {
+        if(res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: ({userInfo})=>{
+              that.setData({
+                userInfo
+              })
+            }
+          });
+        }
+      }
+    })
+  },
+
+  getUserInfo(e) {
+    let userInfo = e.detail.userInfo
+    if(userInfo) {
+      this.setData({
+        userInfo: e.detail.userInfo
+      })
+    }
   },
 
   /**

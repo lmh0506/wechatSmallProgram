@@ -51,6 +51,9 @@
         class="like"
         isLike="{{likeStatus}}"
         count="{{likeCount}}"></like-cmp>
+      <img-btn-cmp class="share-btn" open-type="share">
+        <image class="share" slot="img" src="/images/icon/share.png"></image>
+      </img-btn-cmp>
     </view>
   </view>
 

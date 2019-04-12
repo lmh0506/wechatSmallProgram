@@ -5,6 +5,7 @@
     "music-cmp": "/components/classic/music/index",
     "essay-cmp": "/components/classic/essay/index",
     "epsoide-cmp": "/components/epsoide/index",
-    "navi-cmp": "/components/navi/index"
+    "navi-cmp": "/components/navi/index",
+    "img-btn-cmp": "/components/image-button/index"
   }
 }

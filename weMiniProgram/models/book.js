@@ -51,6 +51,7 @@ class BookModel extends HTTP{
       }
     })
   }
+
 }
 
 export default new BookModel()

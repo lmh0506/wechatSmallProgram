@@ -1,11 +1,16 @@
 <!--pages/classic/classic.wxml-->
 <view class="header">
   <epsoide-cmp class="epsoide" index="{{classic.index}}"></epsoide-cmp>
-  <like-cmp
-    class="like" 
-    bind:like="onLike"
-    isLike="{{likeStatus}}" 
-    count="{{likeCount}}"></like-cmp>
+  <view class="like-container">
+    <like-cmp
+      class="like" 
+      bind:like="onLike"
+      isLike="{{likeStatus}}" 
+      count="{{likeCount}}"></like-cmp>
+    <img-btn-cmp class="share-btn" open-type="share">
+      <image class="share" slot="img" src="/images/icon/share.png"></image>
+    </img-btn-cmp>
+  </view>
 </view>
 <movie-cmp
   hidden="{{classic.type !== 100}}"

@@ -11,6 +11,10 @@ Component({
     isLike: {
       type: Boolean,
       value: false
+    },
+    readOnly: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -27,17 +31,19 @@ Component({
    */
   methods: {
     onLike(e) {
-      let count = this.data.count
-      count = this.data.isLike ? count === 0 ? count : --count : ++ count
-      this.setData({
-        count,
-        isLike: !this.data.isLike
-      })
-      // 自定义事件
-      this.triggerEvent('like', {
-        count,
-        isLike: this.data.isLike
-      })
+      if(!this.properties.readOnly){
+        let count = this.data.count
+        count = this.data.isLike ? count === 0 ? count : --count : ++ count
+        this.setData({
+          count,
+          isLike: !this.data.isLike
+        })
+        // 自定义事件
+        this.triggerEvent('like', {
+          count,
+          isLike: this.data.isLike
+        })
+      }
     }
   }
 })

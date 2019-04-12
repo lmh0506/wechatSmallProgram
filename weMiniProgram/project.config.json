@@ -45,7 +45,7 @@
 				{
 					"id": 0,
 					"name": "book",
-					"pathName": "pages/book/book",
+					"pathName": "pages/my/my",
 					"query": "",
 					"scene": null
 				}
