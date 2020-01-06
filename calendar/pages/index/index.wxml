@@ -1,0 +1,48 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="fix-content">
+    <view class="date-content">{{currentYearMonth}}</view>
+    <view class="week-wrapper">
+      <view class="week-item" wx:for="{{weekList}}"  wx:key="unique">{{item}}</view>
+    </view>
+  </view>
+  <scroll-view 
+    class="calendar-list"
+    scroll-y 
+    lower-threshold="200" 
+    bindscrolltolower="addCalendar"
+    upper-threshold="300"
+    bindscrolltoupper="unshiftCalendar"
+    scroll-into-view="{{scrollToId}}">
+    <block wx:for="{{calendarList}}" wx:for-item="calendar" wx:key="unique">
+      <view id="calendar_{{calendar.year}}_{{calendar.month}}" class="monthday-wrapper" data-yearmonth="{{calendar.yearMonth}}">
+        <view class="monthday-content">{{calendar.yearMonth}}</view>
+        <view class="monthday-list">
+          <block wx:for="{{calendar.dayList}}" wx:for-item="day" wx:for-index="dayIndex" wx:key="unique">
+            <view 
+              class="day-item {{nowDateTime === day.datetime ? 'now' : ''}} {{day.isActive ? 'active' : ''}}" 
+              style="margin-left: calc(100% / 7 * {{dayIndex === 0 ? day.weekday : 0}})"
+              data-contentList="{{day.activeList}}"
+              bind:tap="showDetail">
+              <view>{{day.day}}</view>
+              <view class="avtive-content">{{day.activeList[0]}}</view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </block>
+  </scroll-view>
+
+  <view class="detail-wrapper {{isShowMask ? 'active' : ''}}" bind:tap="hideMask">
+    <view class="detail-content-wrapper {{isShowMask ? 'active' : ''}}" catch:tap>
+      <view class="close" bind:tap="hideMask">X</view>
+      <view class="content-list">
+        <view class="content" wx:for="{{detail}}" wx:key="unique">
+          <text>
+            {{item}}
+          </text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
