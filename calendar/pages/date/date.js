@@ -5,14 +5,34 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    dateList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+  },
+  
+  toAdd(e) {
+    let date = e.currentTarget.dataset.date
+    let query = []
+    for(let key in date) {
+      query.push(`${key}=${date[key]}`)
+    }
 
+    query = '?' + query.join('&')
+    wx.navigateTo({
+      url: '/pages/addEditDate/addEditDate' + query
+    })
+  },
+  deleteDate(e) {
+    let dateList =  wx.getStorageSync('dateList') || []
+    dateList.splice(e.currentTarget.dataset.index, 1)
+    wx.setStorageSync('dateList', dateList)
+    this.setData({
+      dateList
+    })
   },
 
   /**
@@ -26,7 +46,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let dateList =  wx.getStorageSync('dateList') || []
+    this.setData({
+      dateList
+    })
   },
 
   /**

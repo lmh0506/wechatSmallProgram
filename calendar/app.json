@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/time/time",
-    "pages/date/date"
+    "pages/date/date",
+    "pages/addEditDate/addEditDate"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -12,24 +13,26 @@
   },
   "tabBar": {
     "selectedColor": "#1989fa",
-    "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页",
-      "iconPath": "assets/home.png",
-      "selectedIconPath": "assets/home-active.png"
-    },
-    {
-      "pagePath": "pages/date/date",
-      "text": "日期",
-      "iconPath": "assets/date.png",
-      "selectedIconPath": "assets/date-active.png"
-    },
-    {
-      "pagePath": "pages/time/time",
-      "text": "时间",
-      "iconPath": "assets/time.png",
-      "selectedIconPath": "assets/time-active.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "assets/home.png",
+        "selectedIconPath": "assets/home-active.png"
+      },
+      {
+        "pagePath": "pages/date/date",
+        "text": "日期",
+        "iconPath": "assets/date.png",
+        "selectedIconPath": "assets/date-active.png"
+      },
+      {
+        "pagePath": "pages/time/time",
+        "text": "时间",
+        "iconPath": "assets/time.png",
+        "selectedIconPath": "assets/time-active.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

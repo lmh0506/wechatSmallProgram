@@ -1,2 +1,18 @@
 <!--pages/date/date.wxml-->
-<text>pages/date/date.wxml</text>
+<scroll-view class="date-list-wrapper" scroll-y>
+  <block wx:for="{{dateList}}" wx:key="unique">
+    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}">
+      <van-cell-group>
+        <van-cell 
+          is-link 
+          title="{{item.date}}" 
+          value="{{item.content}}"
+          bind:tap="toAdd"
+          data-date="{{item}}" />
+      </van-cell-group>
+      <view class="delete-btn" bind:tap="deleteDate" data-index="{{index}}" slot="right">删除</view>
+    </van-swipe-cell>
+  </block>
+</scroll-view>
+
+<view class="add-btn" bind:tap="toAdd">+</view>

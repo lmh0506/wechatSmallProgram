@@ -33,7 +33,7 @@
     </block>
   </scroll-view>
 
-  <view class="detail-wrapper {{isShowMask ? 'active' : ''}}" bind:tap="hideMask">
+  <!-- <view class="detail-wrapper {{isShowMask ? 'active' : ''}}" bind:tap="hideMask">
     <view class="detail-content-wrapper {{isShowMask ? 'active' : ''}}" catch:tap>
       <view class="close" bind:tap="hideMask">X</view>
       <view class="content-list">
@@ -44,5 +44,18 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
+  <van-popup
+    show="{{ isShowMask }}"
+    closeable
+    round
+    position="bottom"
+    custom-style="max-height: 70%;min-height: 30%;padding-top: 20rpx;"
+    bind:close="hideMask">
+    <view class="content-list">
+      <block wx:for="{{detail}}" wx:key="unique">
+        <van-cell title="{{item}}" />
+      </block>
+    </view>
+  </van-popup>
 </view>

@@ -1,0 +1,6 @@
+/* pages/addEditDate/addEditDate.wxss */
+.btn{
+  width: 80vw !important;
+  margin-top: 48rpx;
+  margin-left: 10vw !important;
+}

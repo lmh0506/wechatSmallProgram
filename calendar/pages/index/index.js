@@ -11,36 +11,47 @@ Page({
     detail: {}
   },
   onLoad () {
+  },
+  onShow() {
     let currentDate = new Date()
     let currentYear = currentDate.getFullYear()
     let currentMonth = currentDate.getMonth() + 1
     let currentDay = currentDate.getDate()
-
+  
     let activeDateTime = []
-    let dateTimeList = ['2020-02-02', '2019-03-03']
+    let dateTimeList = wx.getStorageSync('dateList') || []
     let days = [30, 100, 200, 300, 1000]
-    // 计算相关的日期
+    // 计算符合条件的相关的日期
     for(let i = 0; i < dateTimeList.length; i++) {
       for(let j = 0; j < days.length; j++) {
-        let date = new Date(new Date(dateTimeList[i]).getTime() + days[j] * 24 * 60 * 60 * 1000)
+        let date = new Date(new Date(dateTimeList[i].date).getTime() + days[j] * 24 * 60 * 60 * 1000)
         let year = date.getFullYear()
         let month = date.getMonth() + 1
         let day = date.getDate()
+  
         activeDateTime.push({
-          dateContent: dateTimeList[i],
-          date: `${year}${month}${day}`
+          dateContent: dateTimeList[i].content,
+          date: `${year}-${month}-${day}`
         })
       }
     }
-
+  
     this.setData({
       currentYearMonth: `${currentYear}年${currentMonth}月`,
       nowDateTime: `${currentYear}${currentMonth}${currentDay}`,
       activeDateTime,
       dateTimeList
     })
-
+  
     this.initCalendarList()
+    setTimeout(() => {
+      let currentDate = new Date()
+      let currentYear = currentDate.getFullYear()
+      let currentMonth = currentDate.getMonth()
+      this.setData({
+        scrollToId: `calendar_${currentYear}_${currentMonth}`
+      })
+    }, 20)
   },
   onUnload() {
     this._observer && this._observer.disconnect()
@@ -121,7 +132,7 @@ Page({
 
         let weekday = date.getDay()
         let day = date.getDate()
-        let datetime = `${year}${month}${day}`
+        let datetime = `${year}-${month}-${day}`
         
         let activeList = []
         let activeDateTime = this.data.activeDateTime
@@ -135,7 +146,7 @@ Page({
         }
 
         for(let n = 0; n < dateTimeList.length; n++) {
-          let [timeYear, timeMonth, timeDay] = dateTimeList[n].split('-')
+          let [timeYear, timeMonth, timeDay] = dateTimeList[n].date.split('-')
 
           if(parseInt(timeMonth) === month && parseInt(timeDay) === day && year > timeYear) {
             activeList.push(year - timeYear)
@@ -148,7 +159,7 @@ Page({
           year,
           weekday,
           day,
-          datetime,
+          datetime: `${year}${month}${day}`,
           activeList,
           isActive: activeList.length > 0
         })

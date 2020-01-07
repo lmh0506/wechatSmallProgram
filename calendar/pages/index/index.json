@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup",
+    "van-cell": "@vant/weapp/cell"
+  }
 }

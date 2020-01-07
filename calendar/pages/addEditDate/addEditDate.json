@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "van-popup": "@vant/weapp/popup",
+    "van-field": "@vant/weapp/field",
+    "van-datetime-picker": "@vant/weapp/datetime-picker",
+    "van-button": "@vant/weapp/button"
+  }
+}

@@ -1,0 +1,34 @@
+<!--pages/addEditDate/addEditDate.wxml-->
+  <van-field
+    value="{{ date }}"
+    label="日期"
+    readonly
+    required
+    is-link
+    input-align="right"
+    placeholder="请选择日期"
+    bind:tap="showMask"
+  />
+  <van-field
+    required
+    clearable
+    value="{{ content }}"
+    label="内容"
+    input-align="right"
+    placeholder="请输入内容"
+    bind:change="onContentChange"
+  />
+
+  <van-button bind:click="submit" custom-class="btn" type="primary">提交</van-button>
+
+  <van-popup
+    show="{{ isShowMask }}"
+    position="bottom">
+    <van-datetime-picker
+      catch:tap
+      type="date"
+      value="{{ currentDate }}"
+      bindconfirm="onDateChange"
+      bindcancel="hideMask"
+    />
+  </van-popup>
