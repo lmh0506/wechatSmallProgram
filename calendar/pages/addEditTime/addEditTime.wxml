@@ -1,0 +1,13 @@
+<!--pages/addEditTime/addEditTime.wxml-->
+  <van-field
+    required
+    clearable
+    value="{{ time }}"
+    label="时间"
+    type="number"
+    input-align="right"
+    placeholder="请输入时间"
+    bind:change="onTimeChange"
+  />
+
+  <van-button bind:click="submit" custom-class="btn" type="primary">提交</van-button>

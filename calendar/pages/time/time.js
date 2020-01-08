@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    timeList: []
   },
 
   /**
@@ -26,9 +26,25 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let timeList =  wx.getStorageSync('timeList') || []
+    this.setData({
+      timeList
+    })
   },
-
+  toAdd(e) {
+    let time = e.currentTarget.dataset.time || ''
+    wx.navigateTo({
+      url: '/pages/addEditTime/addEditTime?time=' + time
+    })
+  },
+  deleteTime(e) {
+    let timeList =  wx.getStorageSync('timeList') || []
+    timeList.splice(e.currentTarget.dataset.index, 1)
+    wx.setStorageSync('timeList', timeList)
+    this.setData({
+      timeList
+    })
+  },
   /**
    * 生命周期函数--监听页面隐藏
    */

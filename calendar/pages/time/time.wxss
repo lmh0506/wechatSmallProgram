@@ -1,1 +1,34 @@
 /* pages/time/time.wxss */
+
+.time-list-wrapper{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.add-btn{
+  position: absolute;
+  right: 100rpx;
+  bottom: 100rpx;
+  background: #409eff;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #ee0a24;
+  color: #fff;
+  width: 130rpx;
+  height: 100%;
+}

@@ -1,2 +1,17 @@
 <!--pages/time/time.wxml-->
-<text>pages/time/time.wxml</text>
+<scroll-view class="time-list-wrapper" scroll-y>
+  <block wx:for="{{timeList}}" wx:key="unique">
+    <van-swipe-cell right-width="{{ 65 }}" left-width="{{ 65 }}">
+      <van-cell-group>
+        <van-cell 
+          is-link 
+          title="{{item}}" 
+          bind:tap="toAdd"
+          data-time="{{item}}" />
+      </van-cell-group>
+      <view class="delete-btn" bind:tap="deleteTime" data-index="{{index}}" slot="right">删除</view>
+    </van-swipe-cell>
+  </block>
+</scroll-view>
+
+<view class="add-btn" bind:tap="toAdd">+</view>

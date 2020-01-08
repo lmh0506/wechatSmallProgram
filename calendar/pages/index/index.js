@@ -20,7 +20,7 @@ Page({
   
     let activeDateTime = []
     let dateTimeList = wx.getStorageSync('dateList') || []
-    let days = [30, 100, 200, 300, 1000]
+    let days = wx.getStorageSync('timeList') || []
     // 计算符合条件的相关的日期
     for(let i = 0; i < dateTimeList.length; i++) {
       for(let j = 0; j < days.length; j++) {
@@ -30,7 +30,7 @@ Page({
         let day = date.getDate()
   
         activeDateTime.push({
-          dateContent: dateTimeList[i].content,
+          dateContent: dateTimeList[i].content + '_' + days[j],
           date: `${year}-${month}-${day}`
         })
       }
@@ -148,7 +148,7 @@ Page({
         for(let n = 0; n < dateTimeList.length; n++) {
           let [timeYear, timeMonth, timeDay] = dateTimeList[n].date.split('-')
 
-          if(parseInt(timeMonth) === month && parseInt(timeDay) === day && year > timeYear) {
+          if(parseInt(timeMonth) === month && parseInt(timeDay) === day && year >= timeYear) {
             activeList.push(year - timeYear)
           }
         }
