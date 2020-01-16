@@ -20,7 +20,7 @@
         <view class="monthday-list">
           <block wx:for="{{calendar.dayList}}" wx:for-item="day" wx:for-index="dayIndex" wx:key="unique">
             <view 
-              class="day-item {{nowDateTime === day.datetime ? 'now' : ''}} {{day.isActive ? 'active' : ''}}" 
+              class="day-item {{day.isNow ? 'now' : ''}} {{day.isActive ? 'active' : ''}}" 
               style="margin-left: calc(100% / 7 * {{dayIndex === 0 ? day.weekday : 0}})"
               data-contentList="{{day.activeList}}"
               bind:tap="showDetail">

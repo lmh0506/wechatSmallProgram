@@ -38,7 +38,7 @@ Page({
   
     this.setData({
       currentYearMonth: `${currentYear}年${currentMonth}月`,
-      nowDateTime: `${currentYear}${currentMonth}${currentDay}`,
+      nowDateTime: `${currentYear}-${currentMonth}-${currentDay}`,
       activeDateTime,
       dateTimeList
     })
@@ -133,6 +133,7 @@ Page({
         let weekday = date.getDay()
         let day = date.getDate()
         let datetime = `${year}-${month}-${day}`
+        let isNow = this.data.nowDateTime === datetime
         
         let activeList = []
         let activeDateTime = this.data.activeDateTime
@@ -161,6 +162,7 @@ Page({
           day,
           datetime: `${year}${month}${day}`,
           activeList,
+          isNow,
           isActive: activeList.length > 0
         })
       }
