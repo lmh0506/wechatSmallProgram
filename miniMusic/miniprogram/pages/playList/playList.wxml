@@ -1,0 +1,12 @@
+<!--miniprogram/pages/playList/playList.wxml-->
+<swiper indicator-dots autoplay>
+  <swiper-item wx:for="{{swiperImgUrls}}" wx:key="unique">
+    <image class="img" src="{{item.url}}" mode="widthFix"></image>
+  </swiper-item>
+</swiper>
+
+<view class="playlist-container">
+  <block wx:for="{{playlist}}" wx:key="unique">
+    <x-playlist playlist="{{item}}"></x-playlist>
+  </block>
+</view>
