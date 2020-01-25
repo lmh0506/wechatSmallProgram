@@ -37,6 +37,12 @@ exports.main = async (event, context) => {
     ctx.body = JSON.parse(res)
   })
 
+  app.router('musicUrl', async (ctx, next) => {
+    let res = await rp(BASE_URL + `song/url?id=${event.id}`)
+
+    ctx.body = JSON.parse(res)
+  })
+
 
   return app.serve()
 }
