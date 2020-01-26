@@ -5,7 +5,7 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    isSame: Boolean
   },
 
   /**
@@ -21,8 +21,12 @@ Component({
   },
   lifetimes: {
     ready() {
-      this.getMovableDis()
       this.bgAudioManager = wx.getBackgroundAudioManager();
+      // 如果歌曲未改变 则重新获取一次歌曲时间
+      if(this.data.isSame && this.data.showTime.totalTime === '00:00') {
+        this.setTime()
+      }
+      this.getMovableDis()
       this.bindBGMEvent()
     }
   },
@@ -54,10 +58,14 @@ Component({
 
       this.bgAudioManager.onPlay(()=>{
         console.log('play')
+        // 防止拖动完成后 还会触发touchchange事件
+        this.isMoving = false
+        this.triggerEvent('musicPlay')
       });
 
       this.bgAudioManager.onPause(()=>{
         console.log('pause')
+        this.triggerEvent('musicPause')
       });
 
       this.bgAudioManager.onStop(()=>{
@@ -69,6 +77,8 @@ Component({
       });
 
       this.bgAudioManager.onTimeUpdate(()=>{
+        // 正在拖动时不更新进度条
+        if(this.isMoving) return
         console.log('timeupdate')
         let currentTime = this.bgAudioManager.currentTime
         let duration = this.totalDuration
@@ -84,10 +94,14 @@ Component({
           })
           currentSec = sec
         }
+
+        this.triggerEvent('timeUpdate', { currentTime })
+        
       });
 
       this.bgAudioManager.onEnded(()=>{
         console.log('ended')
+        this.triggerEvent('musicEnd')
       });
 
       this.bgAudioManager.onError((err)=>{
@@ -120,7 +134,7 @@ Component({
     parseNum(num) {
       return num < 10 ? '0' + num : num
     },
-    onTouchEnd() {
+    onTouchEnd(e) {
       this.bgAudioManager.seek(this.totalDuration * this.data.progress / 100)
       let currentTime = this.bgAudioManager.currentTime
       let currentTimeFmt = this.dateFormat(currentTime).time
@@ -129,12 +143,19 @@ Component({
         movableDis: this.data.movableDis,
         'showTime.currentTime': currentTimeFmt
       })
+      // 停止拖动
+      this.isMoving = false
     },
     onChange(e) {
       if(e.detail.source === 'touch') {
         this.data.progress = e.detail.x / (this.movableAreaWidth - this.movableViewWidth) * 100
         this.data.movableDis = e.detail.x
+        // 正在拖动
+        this.isMoving = true
       }
+    },
+    onTap(e) {
+      console.log(e)
     }
   }
 })

@@ -2,7 +2,7 @@
 <view class="container">
   <text class="time">{{showTime.currentTime}}</text>
   <view class="control">
-    <movable-area class="movable-area" scale-area="false">
+    <movable-area class="movable-area" scale-area="false" bind:tap="onTap">
       <movable-view 
         class="movable-view" 
         direction="horizontal"

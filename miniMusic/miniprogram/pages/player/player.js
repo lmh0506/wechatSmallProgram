@@ -1,4 +1,5 @@
 // miniprogram/pages/player/player.js
+const app = getApp()
 Page({
 
   /**
@@ -6,7 +7,10 @@ Page({
    */
   data: {
     picUrl: '',
-    isPlaying: false // false 不播放  true 播放
+    isPlaying: false, // false 不播放  true 播放
+    isLyricShow: false, // 是否当前歌词显示
+    lyric: '暂无歌词',
+    isSame: false // 是否为同一首歌
   },
 
   /**
@@ -21,6 +25,10 @@ Page({
     this.loadMusicDetail(options.id)
   },
   loadMusicDetail(id) {
+    this.setData({
+      isSame: id == app.globalData.playingMusicId
+    })
+    app.setPlayMusicId(id * 1)
     let music = this._musiclist[this._nowPlayIndex]
     wx.setNavigationBarTitle({
       title: music.name
@@ -37,34 +45,51 @@ Page({
         isPlaying: false
       })
       let data = res.result.data[0]
-      this.bgAudioManager.stop()
 
-      this.bgAudioManager.src = data.url
-      this.bgAudioManager.title = music.name
-      this.bgAudioManager.coverImgUrl = music.al.picUrl
-      this.bgAudioManager.singer = music.ar[0].name
-      this.bgAudioManager.epname = music.al.name
+      // 如果播放地址不存在
+      if(!data.url) {
+        wx.showToast({
+          title: '无权限播放'
+        })
+        return
+      }
+
+      if(!this.data.isSame) {
+        this.bgAudioManager.stop()
+  
+        this.bgAudioManager.src = data.url
+        this.bgAudioManager.title = music.name
+        this.bgAudioManager.coverImgUrl = music.al.picUrl
+        this.bgAudioManager.singer = music.ar[0].name
+        this.bgAudioManager.epname = music.al.name
+      }
 
       this.setData({
         isPlaying: true
       })
 
-      this.bgAudioManager.onPlay(()=>{
-        this.setData({
-          isPlaying: true
-        })
-      });
+      // 加载歌词
+      wx.cloud.callFunction({
+        name: 'music',
+        data: {
+          $url: 'lyric',
+          id
+        }
+      }).then(res => {
+        let lyric = '暂无歌词'
+        if(res.result.lrc) {
+          lyric = res.result.lrc.lyric || '暂无歌词'
+        }
 
-      this.bgAudioManager.onPause(()=>{
         this.setData({
-          isPlaying: false
+          lyric
         })
-      });
+      })
 
     })
   },
 
-  togglePLaying() {
+  togglePlaying() {
     if(this.data.isPlaying) {
       this.bgAudioManager.pause()
     }else{
@@ -72,6 +97,21 @@ Page({
     }
     this.setData({
       isPlaying: !this.data.isPlaying
+    })
+  },
+  musicPlay() {
+    this.setData({
+      isPlaying: true
+    })
+  },
+  musicPause() {
+    this.setData({
+      isPlaying: false
+    })
+  },
+  toggleLyricShow() {
+    this.setData({
+      isLyricShow: !this.data.isLyricShow
     })
   },
 
@@ -86,6 +126,9 @@ Page({
   onNext() {
     this._nowPlayIndex = (this._nowPlayIndex + 1) % this._musiclist.length
     this.loadMusicDetail(this._musiclist[this._nowPlayIndex].id)
+  },
+  timeUpdate(e) {
+    this.selectComponent('.lyric').update(e.detail.currentTime)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
