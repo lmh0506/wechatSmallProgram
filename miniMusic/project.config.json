@@ -45,10 +45,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
-					"name": "pages/musicList/musicList",
-					"pathName": "pages/musicList/musicList",
-					"query": "id= 649333707",
+					"id": 1,
+					"name": "pages/blog/blog",
+					"pathName": "pages/blog/blog",
+					"query": "",
 					"scene": null
 				}
 			]

@@ -9,4 +9,6 @@
   <block wx:for="{{playlist}}" wx:key="unique">
     <x-playlist playlist="{{item}}"></x-playlist>
   </block>
+  <view class="playlist-block"></view>
+  <view class="playlist-block"></view>
 </view>

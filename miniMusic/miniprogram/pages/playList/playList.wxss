@@ -9,3 +9,7 @@
   justify-content: space-around;
   margin-top: 10rpx;
 }
+.playlist-block{
+  width: 220rpx;
+  height: 0;
+}
