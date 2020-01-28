@@ -1,4 +1,5 @@
 // miniprogram/pages/blog/blog.js
+let keyWord = ''
 Page({
 
   /**
@@ -7,7 +8,8 @@ Page({
   data: {
     // 控制底部弹出层是否显示
     modalShow: false,
-    blogList: []
+    blogList: [],
+    total: -1
   },
 
   /**
@@ -16,18 +18,25 @@ Page({
   onLoad: function (options) {
     this.loadBlogList()
   },
-  loadBlogList() {
+  loadBlogList(start = 0) {
+    wx.showLoading({
+      title: '拼命加载中'
+    });
     wx.cloud.callFunction({
       name: 'blog',
       data: {
         $url: 'list',
-        start: this.data.blogList.length,
+        keyWord,
+        start,
         limit: 10
       }
     }).then(res => {
       this.setData({
-        blogList: this.data.blogList.concat(res.result)
+        blogList: start === 0 ? res.result.data : this.data.blogList.concat(res.result.data),
+        total: res.result.total
       })
+      wx.hideLoading();
+      wx.stopPullDownRefresh()
     })
   },
   onPublish() {
@@ -54,26 +63,22 @@ Page({
   },
   onLoginFail() {
     wx.showModal({
-      title: '授权用户才能发布',
-      // content: '',
-      // showCancel: true,
-      // cancelText: '取消',
-      // cancelColor: '#000000',
-      // confirmText: '确定',
-      // confirmColor: '#3CC51F',
-      // success: (result) => {
-      //   if(result.confirm){
-          
-      //   }
-      // },
-      // fail: ()=>{},
-      // complete: ()=>{}
+      title: '授权用户才能发布'
     });
   },
   toBlogEdit(userInfo) {
     wx.navigateTo({
       url: `/pages/blog-edit/blog-edit?nickName=${userInfo.nickName}&avatarUrl=${userInfo.avatarUrl}`
     });
+  },
+  goComment(e) {
+    wx.navigateTo({
+      url: `/pages/blog-comment/blog-comment?id=${e.currentTarget.dataset.id}`
+    });
+  },
+  onSearch(e) {
+    keyWord = e.detail
+    this.loadBlogList()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -107,20 +112,27 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.loadBlogList()
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    let len = this.data.blogList.length
+    if(this.data.total > len) {
+      this.loadBlogList(len)
+    }
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (e) {
+    let { blog, id } = e.target.dataset
+    return {
+      title: blog.content,
+      path: '/pages/blog-comment/blog-comment?id=' + id
+    }
   }
 })

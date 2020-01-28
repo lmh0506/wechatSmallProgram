@@ -10,7 +10,7 @@
   <view class="blog-content">{{blog.content}}</view>
   <view class="blog-img">
     <block wx:for="{{blog.imgs}}" wx:key="unique">
-      <image class="img" src="{{item}}" mode="aspectFill"></image>
+      <image class="img" src="{{item}}" catch:tap="onPreviewImg" data-img="{{item}}" mode="aspectFill"></image>
     </block>
   </view>
 </view>

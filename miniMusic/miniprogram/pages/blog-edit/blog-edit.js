@@ -119,6 +119,10 @@ Page({
         });
 
         wx.navigateBack();
+        const pages = getCurrentPages();
+        // 获取上一个页面
+        const prevPage = pages[pages.length - 2]
+        prevPage.loadBlogList()        
 
       } catch (e) {
         console.log(e)
