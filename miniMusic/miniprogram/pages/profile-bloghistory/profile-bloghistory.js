@@ -1,35 +1,38 @@
-// miniprogram/pages/profile/profile.js
+// miniprogram/pages/profile-bloghistory/profile-bloghistory.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    blogList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getBlogList()
   },
-  onTapQrCode() {
-    wx.showLoading({
-      title: '生成中。。。',
-      mask: true
-    });
-
+  getBlogList() {
     wx.cloud.callFunction({
-      name: 'getQrCode'
-    }).then(res =>{
-      wx.previewImage({
-        current: res.result,
-        urls: [res.result]
-      });
+      name: 'blog',
+      data: {
+        $url: 'getListByOpenid',
+        start: this.data.blogList.length,
+        limit: 10
+      }
+    }).then(res => {
+      this.total = res.result.total
+      this.setData({
+        blogList: this.data.blogList.concat(res.result.data)
+      })
     })
-
-    wx.hideLoading();
+  },
+  goComment(e) {
+    wx.navigateTo({
+      url: `/pages/blog-comment/blog-comment?id=${e.currentTarget.dataset.id}`
+    });
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -70,13 +73,19 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
+    if(this.total > this.data.blogList.length) {
+      this.getBlogList()
+    }
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-
+  onShareAppMessage: function (e) {
+    let { blog, id } = e.target.dataset
+    return {
+      title: blog.content,
+      path: '/pages/blog-comment/blog-comment?id=' + id
+    }
   }
 })

@@ -1,0 +1,9 @@
+<!--miniprogram/pages/profile-bloghistory/profile-bloghistory.wxml-->
+<view class="blog-list">
+    <block wx:for="{{blogList}}" wx:key="unique">
+      <view class="blog-panel">
+        <x-blog-card blog="{{item}}" bind:tap="goComment" data-id="{{item._id}}"></x-blog-card>
+        <x-blog-ctrl blogId="{{item._id}}" blog="{{item}}"></x-blog-ctrl>
+      </view>
+    </block>
+  </view>

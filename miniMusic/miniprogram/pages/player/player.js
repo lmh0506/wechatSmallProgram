@@ -62,6 +62,9 @@ Page({
         this.bgAudioManager.coverImgUrl = music.al.picUrl
         this.bgAudioManager.singer = music.ar[0].name
         this.bgAudioManager.epname = music.al.name
+
+        // 保存播放历史
+        this.savePlayHistory()
       }
 
       this.setData({
@@ -129,6 +132,17 @@ Page({
   },
   timeUpdate(e) {
     this.selectComponent('.lyric').update(e.detail.currentTime)
+  },
+  savePlayHistory() {
+    // 当前播放歌曲
+    let music = this._musiclist[this._nowPlayIndex]
+    let openid = app.globalData.openid
+    let history = wx.getStorageSync(openid);
+    let index = history.findIndex(item => item.id === music.id)
+    if(index === -1) {
+      history.unshift(music)
+    }
+    wx.setStorageSync(openid, history);
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

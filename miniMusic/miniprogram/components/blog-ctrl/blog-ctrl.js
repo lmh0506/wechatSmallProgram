@@ -152,22 +152,6 @@ Component({
         console.log(res)
       }).catch(e => {
         console.log(e)
-        if(e.toString().indexOf('fail user refuse to accept the msg hint') > -1) {
-          wx.requestSubscribeMessage({
-            tmplIds: ['b_ZLKaD0fCcOMKMe8f5F95y9G_zHDtgGqIMei-79Qso'],
-            success: (res) => {
-              console.log(res)
-              this.sendMsg(content)
-            },
-            fail(e) {
-              console.log('error：', e)
-              wx.showToast({
-                title: '获取通知失败',
-                icon: 'none'
-              });
-            }
-          })
-        }
       })
     }
   }

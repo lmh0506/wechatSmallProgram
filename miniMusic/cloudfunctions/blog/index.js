@@ -52,7 +52,6 @@ exports.main = async (event, context) => {
     }).get()
     let comments = []
     let totalRes = await blogCommentCollection.where(w).count()
-    console.log(totalRes)
 
     if(totalRes.total > 0) {
       let batchTimes = Math.ceil(totalRes.total / MAX_LIMIT)
@@ -64,7 +63,6 @@ exports.main = async (event, context) => {
         .orderBy('createTime', 'desc')
         .get())
       }
-      console.log(tasks)
 
       if(tasks.length > 0) {
         comments = (await Promise.all(tasks)).reduce((acc, cur) => {
@@ -77,6 +75,26 @@ exports.main = async (event, context) => {
     ctx.body = {
       detail: res.data[0],
       comments: comments.data
+    }
+  })
+
+  app.router('getListByOpenid', async (ctx, next) => {
+    const {OPENID} = cloud.getWXContext()
+    let w = {
+      _openid: OPENID
+    }
+
+    let res = await blogCollection.where(w)
+    .skip(event.start)
+    .limit(event.limit)
+    .orderBy('createTime', 'desc')
+    .get()
+
+    let totalRes = await blogCollection.where(w).count()
+
+    ctx.body = {
+      data: res.data,
+      ...totalRes
     }
   })
 
